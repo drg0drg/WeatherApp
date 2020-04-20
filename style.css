@@ -20,9 +20,6 @@ body{
     top: 0;
     right: 0;
     left: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-    font-weight: 900;
     background-color: rgb(173, 173, 173);
     -webkit-box-shadow: inset 0px 0px 40px 7px rgba(0,0,0,0.79);
     -moz-box-shadow: inset 0px 0px 40px 7px rgba(0,0,0,0.79);
@@ -33,7 +30,35 @@ body{
 h1 {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    font-weight: 900;
 }
+
+
+.navbar-date {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 900;
+    margin-right: 3em;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+
+.navbar-hour {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 900;
+    margin-left: 3em;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
 
 
 #container {
@@ -113,8 +138,10 @@ input {
 
 .prev-Search {
     display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: blue;
-    height: 50px;
+    height: 100px;
     width: 100%;
 }
 
