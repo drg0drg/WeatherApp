@@ -1,0 +1,177 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+body{
+    height: 100vh;
+    display:flex;
+    flex-direction: column;
+}
+
+
+#navbar {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    height: 10vh;
+    top: 0;
+    right: 0;
+    left: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    background-color: rgb(173, 173, 173);
+    -webkit-box-shadow: inset 0px 0px 40px 7px rgba(0,0,0,0.79);
+    -moz-box-shadow: inset 0px 0px 40px 7px rgba(0,0,0,0.79);
+    box-shadow: inset 0px 0px 40px 7px rgba(0,0,0,0.79);
+}
+
+
+h1 {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+
+#container {
+    display:flex;
+    height: 85vh;
+    width: 100vw;
+    margin-top: 10vh;
+    /* border: 3px solid red; */
+}
+
+
+
+.LHS-main {
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-color: palegoldenrod;
+    width:20vw;
+    height: 100%;
+}
+
+
+.search-block {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: salmon;
+    height: 15vh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    width: 100%;
+    margin-bottom: 2em;
+}
+
+
+
+.input-and-btn {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5em;
+    width: 80%;
+}
+
+
+
+input {
+    width: 90%;
+    height: 50px;
+    border: none;
+    margin-right: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+
+.search-btn {
+    width: 50px;
+    height: 50px;
+
+}
+
+
+.cities-list {
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-color: plum;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    width: 100%;
+}
+
+
+.prev-Search {
+    display: flex;
+    background-color: blue;
+    height: 50px;
+    width: 100%;
+}
+
+.prev-Search-Text {
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    color: white;
+}
+
+
+.RHS-main { 
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-color: palegreen;
+    width: 80vw;
+    height: 100%;
+    /* border: 3px solid green; */
+}
+
+
+.main-weather {
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: skyblue;
+    height: 60%;
+    width: 100%;
+}
+
+
+
+.forecast-block {
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: tan;
+    height: 40%;
+    width: 100%;
+}
+
+
+#footer {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(173, 173, 173);
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 5vh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 6px;
+    -webkit-box-shadow: inset 0px 0px 12px 4px rgba(0,0,0,0.55);
+    -moz-box-shadow: inset 0px 0px 12px 4px rgba(0,0,0,0.55);
+    box-shadow: inset 0px 0px 12px 4px rgba(0,0,0,0.55);
+}
