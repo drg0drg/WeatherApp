@@ -15,21 +15,21 @@
     RHSMainEl = document.getElementById("RHS-main");
 
     mainWeatherEl = document.getElementById("main-weather");
-    mainWeatherTitle = document.getElementById("main-weather-title");
+    // mainWeatherTitle = document.getElementById("main-weather-title");
     // mainWeatherTitleText = document.getElementById("main-weather-title-text");
-    mainWeatherTitleDate = document.getElementById("main-weather-title-date");
-    mainWeatherInfo = document.getElementById("main-weather-info");
-    tempEl = document.getElementById("temp");
-    humidityEl = document.getElementById("humidity");
-    windEl = document.getElementById("wind");
-    UVfactorEl = document.getElementById("UV-factor");
+    // mainWeatherTitleDate = document.getElementById("main-weather-title-date");
+    // mainWeatherInfo = document.getElementById("main-weather-info");
+    // tempEl = document.getElementById("temp");
+    // humidityEl = document.getElementById("humidity");
+    // windEl = document.getElementById("wind");
+    // UVfactorEl = document.getElementById("UV-factor");
     
-    forecastBlock = document.getElementById("forecast-block");
-    nextDay1 = document.getElementById("next-day-1");
-    nextDay2 = document.getElementById("next-day-2");
-    nextDay3 = document.getElementById("next-day-3");
-    nextDay4 = document.getElementById("next-day-4");
-    nextDay5 = document.getElementById("next-day-5");
+    // forecastBlock = document.getElementById("forecast-block");
+    // nextDay1 = document.getElementById("next-day-1");
+    // nextDay2 = document.getElementById("next-day-2");
+    // nextDay3 = document.getElementById("next-day-3");
+    // nextDay4 = document.getElementById("next-day-4");
+    // nextDay5 = document.getElementById("next-day-5");
     // nextDay1Date = document.getElementById("next-day-1-date");
     
     
@@ -124,9 +124,8 @@
         localStorageSave();
         createUserCityHistory ();
         getWeatherAPIdata();
-        // getWeatherAPI5Days();
-        // getUVindex();
-        createMainAppInfo();
+        getWeatherAPI5Days();
+        checkIfMainWeatherDivExists();
     })
     
     
@@ -157,7 +156,6 @@
     
     // -----------------WEATHER API----------------------
     //--------------------------------------------------
-    
     //api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
     // my key    f729f6b644bc293d9f405e30b345dbd6
     function getWeatherAPIdata(){
@@ -173,9 +171,9 @@
     
             //Fill in the <divs> with fetched API info
             mainWeatherTitleText.textContent = data.name;
-            // tempEl.textContent = "Temperature: " + data.main.temp + "°C";
-            // humidityEl.textContent = "Humidity: " + data.main.humidity;
-            // windEl.textContent = "Wind speed: " + data.wind.speed + " m/s";
+            mainWeatherTemp.textContent = "Temperature: " + data.main.temp + "°C";
+            mainWeatherHumidity.textContent = "Humidity: " + data.main.humidity;
+            mainWeatherWind.textContent = "Wind speed: " + data.wind.speed + " m/s";
     
             cityLatitude = data.coord.lat;
             cityLongitude = data.coord.lon;
@@ -192,130 +190,62 @@
                 console.log(data2);
                 
                 //Date formatting
-
                 // date_iso: "2020-04-22T12:00:00Z"
                 var str = data2.date_iso;
                 str = str.substring(0, str.length-10);
-                // // console.log(str);
                 mainWeatherTitleDate.textContent = str;
 
-
-                
                 //Fill in the <divs> with fetched API info
-                // UVfactorEl.textContent = "UV factor index: " + data2.value;
-    
-    
-                })
+                mainWeatherUV.textContent = "UV factor index: " + data2.value;
+            })
         })//end of then from fetch(api)
-    
-    
-    
     } //end of getWeatherAPIdata()
     
     
     
     
     
-    
-    
-    
-    
-    // ---------------5 day forecast------------
+    // ---------------5 DAY FORECAST------------
     //------------------------------------------
-    // correct synthax for openWeather 5 day forecast API
-    // api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}
+    // correct synthax for openWeather 5 day forecast API --->  api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}
     // my key    f729f6b644bc293d9f405e30b345dbd6
+    function getWeatherAPI5Days(){
+        userInput = input.value;
+        var city = userInput;
+        var api= "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=f729f6b644bc293d9f405e30b345dbd6";
+    
+        fetch(api)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            
+            // dt_txt: "2020-04-22 00:00:00"
+            for (i=1; i<=5; i++){
+                var dataDate = data.list[i].dt_txt;
+                dataDate = dataDate.substring(0, dataDate.length-8);
+                // console.log(str);
+                //updating the dynamic html divs with API data
+                forecastBlockDayDate.textContent = dataDate;
+                //converting Kelvin to Celsius
+                var dataKelvin = data.list[i].main.temp;
+                var dataCelsius = dataKelvin - 273.15; //this is a number
+                var dataCelsiusFormat = Math.round(dataCelsius)
+                forecastBlockDayTemp.textContent = dataCelsiusFormat + " °C";
+
+                forecastBlockDayHumidity.textContent= data.list[i].main.humidity + " %";
+            }
+        })
+    }//end of getWeatherAPI5Days()
     
     
-    
-    // function getWeatherAPI5Days(){
-    //     userInput = input.value;
-    //     var city = userInput;
-    //     var api= "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=f729f6b644bc293d9f405e30b345dbd6";
-    
-    //     fetch(api)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         console.log(data);
-    
-    //         //bring all <next day dates> from HTML
-    //         dateNextDay1 = document.getElementById("next-day-1-date");
-    //         dateNextDay2 = document.getElementById("next-day-2-date");
-    //         dateNextDay3 = document.getElementById("next-day-3-date");
-    //         dateNextDay4 = document.getElementById("next-day-4-date");
-    //         dateNextDay5 = document.getElementById("next-day-5-date");
-    
-    //         //bring all <next day icons> from HTML
-    //         iconNextDay1 = document.getElementById("next-day-1-image-box");
-    
-    //         for (i=1; i<=5; i++){
-    //             var str = data.list[i].dt_txt;
-    //             str = str.substring(0, str.length-8);
-    //             // console.log(str);
-    //             // nextDay1Date.textContent = str;
-    //         }
-    //         // dt_txt: "2020-04-22 00:00:00"
-    //     })
-    // }//end of getWeatherAPI5Days()
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // -------------------UV INDEX------------
-    
-    
-    // function getUVindex(){
-    //     userInput = input.value;
-    //     var city = userInput;
-    //     console.log("user input city is  " + city)
-    //     // http://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}
-    //     var api = "http://api.openweathermap.org/data/2.5/uvi?appid=f729f6b644bc293d9f405e30b345dbd6&lat="+cityLatitude+"&lon="+cityLongitude;
-    
-    //     fetch(api)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //         console.log(data);
-    // })
-    // }//end of getUVindex()
-    
-    
-    
-    
-    
-    
-    //----------------------------------------------------
-    
-    
-    
-    
-    // function fetchWeatherData(){
-    // }
-    
-    // fetchWeatherData();
     
     
     //Function that creates <RHS div>
     function createMainAppInfo() {
-                //creating the box for RHS
-                // RHSMainEl = document.createElement("div");
-                // RHSMainEl.setAttribute("class", "RHS-main");
-                // containerEl.appendChild(RHSMainEl);
-    
+
                 //creating the main div for current city weather
                 mainWeather = document.createElement("div");
+                mainWeather.setAttribute("id", "main-weather");
                 mainWeather.setAttribute("class", "main-weather");
                 RHSMainEl.appendChild(mainWeather);
     
@@ -326,23 +256,105 @@
 
                 //Creating the div for the main title text
                 mainWeatherTitleText = document.createElement("p");
-                mainWeatherTitle.setAttribute("class", "main-weather-title-text");
+                mainWeatherTitleText.setAttribute("class", "main-weather-title-text");
                 mainWeatherTitle.appendChild(mainWeatherTitleText);
 
                 //Creating the div for main weather date
                 mainWeatherTitleDate = document.createElement("p");
                 mainWeatherTitleDate.setAttribute("class", "main-weather-title-date");
                 mainWeatherTitle.appendChild(mainWeatherTitleDate);
-    
-                //creating the info sub-block for the main weather section
-                // mainWeatherInfo = document.createElement("div");
-                // mainWeatherInfo.setAttribute("class", "main-weather-info")
-                // mainWeather.appendChild(mainWeatherInfo);
-    
-                //creating the div for the 5 days prognosis
+
+                //Creating the div for main weather icon
+                mainWeatherTitleIcon = document.createElement("div");
+                mainWeatherTitleIcon.setAttribute("class", "main-weather-title-icon")
+                mainWeatherTitle.appendChild(mainWeatherTitleIcon);
+
+                //Creating the div for main weather temperature
+                mainWeatherTemp = document.createElement("p");
+                mainWeatherTemp.setAttribute("class", "main-weather-data")
+                mainWeather.appendChild(mainWeatherTemp);
+
+                //Creating the div for main weather humidity
+                mainWeatherHumidity = document.createElement("p");
+                mainWeatherHumidity.setAttribute("class", "main-weather-data")
+                mainWeather.appendChild(mainWeatherHumidity);
+                
+                //Creating the div for main weather wind
+                mainWeatherWind = document.createElement("p");
+                mainWeatherWind.setAttribute("class", "main-weather-data")
+                mainWeather.appendChild(mainWeatherWind);
+
+                //Creating the div for main weather UV Factor
+                mainWeatherUV = document.createElement("p");
+                mainWeatherUV.setAttribute("class", "main-weather-data")
+                mainWeather.appendChild(mainWeatherUV);
+                
+                // //Creating the div for the 5 days prognosis
                 // forecastBlock = document.createElement("div");
+                // forecastBlock.setAttribute("id", "forecast-block");
                 // forecastBlock.setAttribute("class", "forecast-block");
-                // RHSMain.appendChild(forecastBlock);
+                // RHSMainEl.appendChild(forecastBlock);
+
+                // //Creating the div for the 5 days prognosis boxes
+                // forecastBlockDay = document.createElement("div");
+                // forecastBlockDay.setAttribute("class", "forecast-block-day-box")
+                // forecastBlock.appendChild(forecastBlockDay);
+                
+
+    }//end of function createMainAppInfo()
+
+
+    function create5DaysPrognosis(){
+        //Creating the div for the 5 days prognosis
+        forecastBlock = document.createElement("div");
+        forecastBlock.setAttribute("id", "forecast-block");
+        forecastBlock.setAttribute("class", "forecast-block");
+        RHSMainEl.appendChild(forecastBlock);
+        
+        //Creating the div for the 5 days prognosis boxes
+        forecastBlockDay = document.createElement("div");
+        forecastBlockDay.setAttribute("class", "forecast-block-day-box")
+        forecastBlock.appendChild(forecastBlockDay);
+
+        //Creating the div for the 5 days prognosis date
+        forecastBlockDayDate = document.createElement("p");
+        forecastBlockDayDate.setAttribute("class", "forecast-block-day-date");
+        forecastBlockDay.appendChild(forecastBlockDayDate);
+
+        //Creating the div for the 5 days prognosis icon
+        forecastBlockDayIcon = document.createElement("p");
+        forecastBlockDayIcon.setAttribute("class", "forecast-block-day-icon");
+        forecastBlockDay.appendChild(forecastBlockDayIcon);
+
+        //Creating the div for the 5 days prognosis temp
+        forecastBlockDayTemp = document.createElement("p");
+        forecastBlockDayTemp.setAttribute("class", "forecast-block-day-temp");
+        forecastBlockDay.appendChild(forecastBlockDayTemp);
+
+        //Creating the div for the 5 days prognosis humidity
+        forecastBlockDayHumidity = document.createElement("p");
+        forecastBlockDayHumidity.setAttribute("class", "forecast-block-day-temp");
+        forecastBlockDay.appendChild(forecastBlockDayHumidity);
+        
+        
+        
+        
+        
     }
     
-    
+
+
+
+    //Function to check if the divs exist. it will call/not call createMainAppInfo()
+    function checkIfMainWeatherDivExists(){
+        //Attempt to get the element using document.getElementById
+        var element = document.getElementById("main-weather");
+        //If it isn't "undefined" and it isn't "null", then it exists.
+        if(typeof(element) != 'undefined' && element != null){
+            getWeatherAPIdata();
+            getWeatherAPI5Days();
+        }else {
+            createMainAppInfo();
+            create5DaysPrognosis();
+        }
+    }
