@@ -66,39 +66,52 @@ window.onload = function() {
 
 
 
-//function <createUserCity> dynamically creates a div for each of user's searches
+//function <createUserCityHistory> dynamically creates a div for each of user's searches
 // These searches will load when page loads because they retreive info from localStorage
 
-function createUserCity () {
+function createUserCityHistory () {
 
         //creating the box
-        userCityList = document.createElement("div");
-        userCityList.setAttribute("class", "user-city-list");
-        citiesListEl.appendChild(userCityList);
+        var prevSearch = document.createElement("div");
+        prevSearch.setAttribute("class", "prev-Search");
+        citiesListEl.appendChild(prevSearch);
 
         //creating the text <p> inside the box
-        var userCityListText = document.createElement("p");
-        userCityListText.setAttribute("class", "user-city-list-Text");
-        userCityList.appendChild(userCityListText);
-        
+        var prevSearchText = document.createElement("p");
+        prevSearchText.setAttribute("class", "prev-Search-Text");
+        prevSearch.appendChild(prevSearchText);
+    
+        localStorageLength = localStorage.length;
         //taking the value from local storage and place it into the newly created div
-        for (localStorageKey=0; localStorageKey<localStorage.length; localStorageKey++) {
-            userCityListText.innerHTML = localStorage.getItem(localStorageKey);
+        for (localStorageKey=0; localStorageKey<localStorageLength; localStorageKey++) {
+            prevSearchText.innerHTML = localStorage.getItem(localStorageKey);
             console.log("localStorageKey is " + localStorageKey);
-            console.log("userCityListText is " + userCityListText.textContent);
+            console.log("prevSearchText is " + prevSearchText);
         }
 }
 
 
 //function to save user input to localStorage
 function localStorageSave(){
+    userInput = input.value;
+
+    //checks if local storage is empty
+    if (Object.keys(localStorage).length === 0){
+        localStorageKey = 0;
+        userInput = input.value;
+        //saving user's input in localStorage
+        localStorage.setItem(localStorageKey, userInput);
+        localStorageKey++;
+    //if localStorage is not empty, 
+    } else {
+        let localStorageLength = Object.keys(localStorage).length;
+        localStorageKey = localStorageLength;
         //saving user's input in localStorage
         userInput = input.value;
         localStorage.setItem(localStorageKey, userInput);
-        if(localStorage != null){
-            localStorageKey++;
-        }
-        // localStorageKey++;
+        localStorageKey++;
+
+    }
 }
 
 
@@ -107,7 +120,7 @@ function localStorageSave(){
 searchBtn.addEventListener("click", function(e){
     e.preventDefault();
     localStorageSave();
-    createUserCity ();
+    createUserCityHistory ();
     getWeatherAPIdata();
     getWeatherAPI5Days();
     // getUVindex();
@@ -118,29 +131,29 @@ searchBtn.addEventListener("click", function(e){
 
 //function to build cities list and populate each div with values from localStorage.
 //this will be called inside <onload> function.
-//It needs to be separate process from createUserCity (which is linked to searchBtn)
+//It needs to be separate process from createUserCityHistory (which is linked to searchBtn)
 function loadCitiesList(){
     for (i=0; i<localStorage.length; i++) {
 
         //creating the box
-        var userCityList = document.createElement("div");
-        userCityList.setAttribute("class", "prev-Search");
-        citiesListEl.appendChild(userCityList);
+        var prevSearch = document.createElement("div");
+        prevSearch.setAttribute("class", "prev-Search");
+        citiesListEl.appendChild(prevSearch);
         
         //creating the text <p> inside the box
-        var userCityListText = document.createElement("p");
-        userCityListText.setAttribute("class", "prev-Search-Text");
-        userCityList.appendChild(userCityListText);
+        var prevSearchText = document.createElement("p");
+        prevSearchText.setAttribute("class", "prev-Search-Text");
+        prevSearch.appendChild(prevSearchText);
                 
         //taking the value from local storage and place it into the newly created div
-        userCityListText.innerHTML = localStorage.getItem(i);
+        prevSearchText.innerHTML = localStorage.getItem(i);
         console.log("localStorageKey is " + i);
-        console.log("userCityListText is " + i);        
+        console.log("prevSearchText is " + i);        
     }
 }
 
 
-// -----------------WATHER API----------------------
+// -----------------WEATHER API----------------------
 //--------------------------------------------------
 
 //api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
