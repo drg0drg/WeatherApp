@@ -122,7 +122,7 @@ searchBtn.addEventListener("click", function(e){
     localStorageSave();
     createUserCityHistory ();
     getWeatherAPIdata();
-    getWeatherAPI5Days();
+    // getWeatherAPI5Days();
     // getUVindex();
     // createMainAppInfo();
 })
@@ -169,6 +169,7 @@ function getWeatherAPIdata(){
     .then(data => {
         console.log(data);
 
+        //Fill in the <divs> with fetched API info
         mainWeatherTitleText.textContent = data.name;
         tempEl.textContent = "Temperature: " + data.main.temp + "°C";
         humidityEl.textContent = "Humidity: " + data.main.humidity;
@@ -176,23 +177,33 @@ function getWeatherAPIdata(){
 
         cityLatitude = data.coord.lat;
         cityLongitude = data.coord.lon;
-        UVfactorEl.textContent = "cityLatitude is: " + cityLatitude;
-    })
+        
+        //---------UV Index API---------------
+        //------------------------------------
+        // // correct synthax for openWeather UVindex API
+        // // http://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}
+        var api2 = "http://api.openweathermap.org/data/2.5/uvi?appid=f729f6b644bc293d9f405e30b345dbd6&lat="+cityLatitude+"&lon="+cityLongitude;
+        
+        fetch(api2)
+        .then(res => res.json())
+        .then(data2 => {
+            console.log(data2);
+            
+            //Fill in the <divs> with fetched API info
+            UVfactorEl.textContent = "UV factor index: " + data2.value;
 
-// -------------------UV INDEX------------
+
+            })
+    })//end of then from fetch(api)
 
 
-    // // correct synthax for openWeather UVindex API
-    // // http://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}
-    // var api2 = "http://api.openweathermap.org/data/2.5/uvi?appid=f729f6b644bc293d9f405e30b345dbd6&lat="+cityLatitude+"&lon="+cityLongitude;
-
-    // fetch(api2)
-    //     .then(res => res.json())
-    //     .then(data2 => {
-    //     console.log(data2);
-    //     })
 
 } //end of getWeatherAPIdata()
+
+
+
+
+
 
 
 
@@ -205,57 +216,35 @@ function getWeatherAPIdata(){
 
 
 
-function getWeatherAPI5Days(){
-    userInput = input.value;
-    var city = userInput;
-    var api= "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=f729f6b644bc293d9f405e30b345dbd6";
+// function getWeatherAPI5Days(){
+//     userInput = input.value;
+//     var city = userInput;
+//     var api= "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=f729f6b644bc293d9f405e30b345dbd6";
 
-    fetch(api)
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
+//     fetch(api)
+//     .then(res => res.json())
+//     .then(data => {
+//         console.log(data);
 
-        //bring all <next day dates> from HTML
-        dateNextDay1 = document.getElementById("next-day-1-date");
-        dateNextDay2 = document.getElementById("next-day-2-date");
-        dateNextDay3 = document.getElementById("next-day-3-date");
-        dateNextDay4 = document.getElementById("next-day-4-date");
-        dateNextDay5 = document.getElementById("next-day-5-date");
+//         //bring all <next day dates> from HTML
+//         dateNextDay1 = document.getElementById("next-day-1-date");
+//         dateNextDay2 = document.getElementById("next-day-2-date");
+//         dateNextDay3 = document.getElementById("next-day-3-date");
+//         dateNextDay4 = document.getElementById("next-day-4-date");
+//         dateNextDay5 = document.getElementById("next-day-5-date");
 
-        //bring all <next day icons> from HTML
-        iconNextDay1 = document.getElementById("next-day-1-image-box");
+//         //bring all <next day icons> from HTML
+//         iconNextDay1 = document.getElementById("next-day-1-image-box");
 
-        for (i=1; i<=5; i++){
-            var str = data.list[i].dt_txt;
-            str = str.substring(0, str.length-8);
-            // console.log(str);
-            // nextDay1Date.textContent = str;
-        }
-
-
-
-
-        //-------------loop try-----------------
-        // const ceva = data.list
-        // const altceva = ceva.slice(1, 6);
-        // console.log(altceva)
-
-        // altceva.forEach(element => {
-        //     const p = document.createElement("p");
-        //     p.textContent = element[0].dt_txt;
-        //     var forecastDay = document.getElementById("next-day-1");
-        //     forecastDay.appendChild(p);
-        // })
-
-
-
-
-        // dt_txt: "2020-04-22 00:00:00"
-
-    })
-
-
-}
+//         for (i=1; i<=5; i++){
+//             var str = data.list[i].dt_txt;
+//             str = str.substring(0, str.length-8);
+//             // console.log(str);
+//             // nextDay1Date.textContent = str;
+//         }
+//         // dt_txt: "2020-04-22 00:00:00"
+//     })
+// }//end of getWeatherAPI5Days()
 
 
 
