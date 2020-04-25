@@ -20,19 +20,20 @@ body{
     top: 0;
     right: 0;
     left: 0;
-    background-color: rgb(173, 173, 173);
-    -webkit-box-shadow: inset 0px 0px 40px 7px rgba(0,0,0,0.79);
+    background-color: rgb(237, 241, 244);
+    /* -webkit-box-shadow: inset 0px 0px 40px 7px rgba(0,0,0,0.79);
     -moz-box-shadow: inset 0px 0px 40px 7px rgba(0,0,0,0.79);
-    box-shadow: inset 0px 0px 40px 7px rgba(0,0,0,0.79);
+    box-shadow: inset 0px 0px 40px 7px rgba(0,0,0,0.79); */
 }
 
 
 h1 {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-top: 1px solid rgb(166, 169, 171); 
+    border-bottom: 1px solid rgb(166, 169, 171); 
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 900;
+    color: rgb(71, 72, 75);  
 }
 
 
@@ -40,11 +41,13 @@ h1 {
     display:flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 900;
     margin-right: 3em;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-top: 1px solid rgb(166, 169, 171); 
+    border-bottom: 1px solid rgb(166, 169, 171); 
+    color: rgb(71, 72, 75);  
+
 }
 
 
@@ -52,11 +55,13 @@ h1 {
     display:flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 900;
     margin-left: 3em;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-top: 1px solid rgb(166, 169, 171); 
+    border-bottom: 1px solid rgb(166, 169, 171); 
+    color: rgb(71, 72, 75);  
+
 }
 
 
@@ -66,6 +71,8 @@ h1 {
     height: 85vh;
     width: 100vw;
     margin-top: 10vh;
+    background-color: rgb(213, 217, 220); 
+
     /* border: 3px solid red; */
 }
 
@@ -76,9 +83,10 @@ h1 {
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    background-color: palegoldenrod;
+    background-color: rgb(237, 241, 244);
     width:20vw;
     height: 100%;
+    border-right: 1px solid rgb(237, 241, 244);  
 }
 
 
@@ -87,12 +95,13 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: salmon;
+    background-color: rgb(213, 217, 220); 
     height: 15vh;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
+    font-size: 20px;
     width: 100%;
-    margin-bottom: 2em;
+    margin-bottom: 0.2em;
+    color: rgb(71, 72, 75);  
 }
 
 
@@ -101,26 +110,28 @@ h1 {
     display:flex;
     justify-content: center;
     align-items: center;
-    margin-top: 0.5em;
+    margin-top: 0.2em;
     width: 80%;
+    margin-bottom: 10px;
 }
 
 
 
 input {
     width: 90%;
-    height: 50px;
+    height: 20px;
     border: none;
     margin-right: 10px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 
 .search-btn {
     width: 50px;
-    height: 50px;
-
+    height: 20px;
+    background-color: white;
+    border: none;
 }
 
 
@@ -129,28 +140,41 @@ input {
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    background-color: plum;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 50px;
-    width: 100%;
+    background-color: rgb(237, 241, 244);
+    width: 95%;
+    padding: 5px;
 }
 
-
-.user-city-list { 
-    display: flex;
+.prev-Search {
+    display:flex;
     justify-content: center;
-    align-items: center;
-    background-color: blue;
-    height: 100px;
+    border-top: 1px solid rgb(166, 169, 171); 
+    border-bottom:1px solid rgb(166, 169, 171); 
+    background-color: transparent;
     width: 100%;
+    margin-bottom: 5px;
+    /* border:none; */
 }
 
-.user-city-list-Text {
+.prev-Search-Text {
+    /* border-top: 1px solid rgb(166, 169, 171); 
+    border-bottom:1px solid rgb(166, 169, 171);  */
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(71, 72, 75);  
+    font-size: 35px;
+    /* margin-bottom: 10px; */
+    /* margin-left: 80px; */
+
+}
+
+
+
+/* .user-city-list-Text {
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 40px;
+    font-size: 100px;
     color: white;
-}
+} */
 
 
 .RHS-main { 
@@ -168,9 +192,9 @@ input {
 .main-weather {
     display:flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    background-color: rgb(86, 221, 165);
+    background-color: rgb(237, 241, 244);
     height: 50%;
     width: 90%;
 }
@@ -180,20 +204,16 @@ input {
     display:flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(9, 100, 128);
-    height: 40%;
+    background-color: rgb(237, 241, 244);
+    /* height: 40%; */
     width: 70%;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    border-top: 1px solid rgb(166, 169, 171); 
+    border-bottom: 1px solid rgb(166, 169, 171); 
 }
 
 
-.main-weather-title-date-box {
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: teal;
-
-}
 
 
 .main-weather-title-text {
@@ -201,8 +221,10 @@ input {
     justify-content: center;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 60px;
-    color: white;
+    font-size: 40px;
+    color: rgb(71, 72, 75);  
+    /* color: white; */
+    margin-right: 40px;
 }
 
 
@@ -211,21 +233,29 @@ input {
     justify-content: center;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    color: white;
+    font-size: 40px;
+    color: rgb(71, 72, 75);  
 
 }
 
+.main-weather-title-icon {
+    width: 50px;
+    height: 50px;
+    margin-left: 30px;
+}
 
-.main-weather-info {
+
+
+.main-weather-data {
     display:flex;
-    flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    background-color: rgb(228, 175, 29);
-    height: 60%;
-    width: 70%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    color: rgb(71, 72, 75);  
 }
+
+
 
 
 .main-weather-info-text {
@@ -234,8 +264,17 @@ input {
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 50px;
-    color: white;
+    color: rgb(71, 72, 75);  
 
+
+}
+
+.UVclass-yellow {
+    background-color: yellow;
+}
+
+.UVclass-red {
+    background-color: red;
 
 }
 
@@ -245,7 +284,7 @@ input {
     display:flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color: tan;
+    background-color: rgba(237, 241, 244, 0.50);
     height: 30%;
     width: 90%;
 }
@@ -258,19 +297,23 @@ input {
     align-items: center;
     height: 80%;
     width: 16%;
-    background-color: brown;
+    background-color: rgb(2, 161, 55);
+    /* background-color: rgba(237, 241, 244, 0.50); */
+    border-left: 1px solid rgb(71, 72, 75); 
+    border-right: 1px solid rgb(71, 72, 75); 
 }
 
 .forecast-block-day-date,
-.forecast-block-day-icon,
+.forecast-block-day-hum,
 .forecast-block-day-temp {
     display:flex;
     justify-content: center;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
-    color: white;
-
+    /* color: rgb(71, 72, 75);   */
+    color: #fff;
+    font-weight: 600;
 }
 
 
@@ -278,15 +321,26 @@ input {
     display:flex;
     justify-content: center;
     align-items: center;
-    background: rgb(173, 173, 173);
+    background-color: rgb(237, 241, 244);
     position: fixed;
     right: 0;
     bottom: 0;
     left: 0;
     height: 5vh;
     font-family: Arial, Helvetica, sans-serif;
+    color: rgb(71, 72, 75);  
     font-size: 6px;
-    -webkit-box-shadow: inset 0px 0px 12px 4px rgba(0,0,0,0.55);
+    /* -webkit-box-shadow: inset 0px 0px 12px 4px rgba(0,0,0,0.55);
     -moz-box-shadow: inset 0px 0px 12px 4px rgba(0,0,0,0.55);
-    box-shadow: inset 0px 0px 12px 4px rgba(0,0,0,0.55);
+    box-shadow: inset 0px 0px 12px 4px rgba(0,0,0,0.55); */
 }
+
+
+
+/* main colour: 237, 241, 244 or EDF1F4 */
+
+/* main second   213, 217, 220  or D5D9DC */
+
+/* details  166, 169, 171 or A6A9AB */
+
+/* text 71, 72, 75  or 47484B */
