@@ -20,7 +20,7 @@ body{
     top: 0;
     right: 0;
     left: 0;
-    background-color: rgb(237, 241, 244);
+    background-color: rgb(237, 241, 244); 
     /* -webkit-box-shadow: inset 0px 0px 40px 7px rgba(0,0,0,0.79);
     -moz-box-shadow: inset 0px 0px 40px 7px rgba(0,0,0,0.79);
     box-shadow: inset 0px 0px 40px 7px rgba(0,0,0,0.79); */
@@ -41,6 +41,7 @@ h1 {
     display:flex;
     justify-content: center;
     align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     font-weight: 900;
     margin-right: 3em;
@@ -55,6 +56,7 @@ h1 {
     display:flex;
     justify-content: center;
     align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     font-weight: 900;
     margin-left: 3em;
@@ -71,7 +73,7 @@ h1 {
     height: 85vh;
     width: 100vw;
     margin-top: 10vh;
-    background-color: rgb(213, 217, 220); 
+    background-color: rgb(237, 241, 244); 
 
     /* border: 3px solid red; */
 }
@@ -130,8 +132,11 @@ input {
 .search-btn {
     width: 50px;
     height: 20px;
-    background-color: white;
+    background-color: transparent;
     border: none;
+    border-bottom: 1px solid rgb(166, 169, 171);
+    border-top: 1px solid rgb(166, 169, 171);
+
 }
 
 
@@ -161,7 +166,7 @@ input {
     border-bottom:1px solid rgb(166, 169, 171);  */
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(71, 72, 75);  
-    font-size: 35px;
+    font-size: 25px;
     /* margin-bottom: 10px; */
     /* margin-left: 80px; */
 
@@ -192,11 +197,16 @@ input {
 .main-weather {
     display:flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: center;
-    background-color: rgb(237, 241, 244);
+    background-color: rgb(213, 217, 220); 
     height: 50%;
     width: 90%;
+    padding-bottom: 20px;
+    -webkit-box-shadow: 6px 6px 6px 0px rgba(91, 92, 101, 0.3);
+    -moz-box-shadow: 6px 6px 6px 0px rgba(91,92,101,0.3);
+    box-shadow: 6px 6px 6px 0px rgba(91,92,101,0.3);
+
 }
 
 
@@ -204,11 +214,11 @@ input {
     display:flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(237, 241, 244);
+    background-color: rgb(213, 217, 220);
     /* height: 40%; */
     width: 70%;
     margin-top: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     border-top: 1px solid rgb(166, 169, 171); 
     border-bottom: 1px solid rgb(166, 169, 171); 
 }
@@ -222,6 +232,7 @@ input {
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 40px;
+    font-weight: 900;
     color: rgb(71, 72, 75);  
     /* color: white; */
     margin-right: 40px;
@@ -234,13 +245,15 @@ input {
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 40px;
+    font-weight: 900;
+
     color: rgb(71, 72, 75);  
 
 }
 
 .main-weather-title-icon {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     margin-left: 30px;
 }
 
@@ -252,6 +265,7 @@ input {
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 30px;
+    font-weight: 600;
     color: rgb(71, 72, 75);  
 }
 
@@ -269,13 +283,22 @@ input {
 
 }
 
+.UVclass-green {
+    background-color: rgba(119, 247, 68, 0.5);
+}
+
+
 .UVclass-yellow {
-    background-color: yellow;
+    background-color: rgba(255, 255, 0, 0.5);
+}
+
+
+.UVclass-orange {
+    background-color: rgba(255, 102, 0, 0.5);
 }
 
 .UVclass-red {
-    background-color: red;
-
+    background-color: rgba(255, 0, 0, 0.2);
 }
 
 
@@ -284,9 +307,13 @@ input {
     display:flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color: rgba(237, 241, 244, 0.50);
+    background-color: rgb(213, 217, 220); 
     height: 30%;
     width: 90%;
+    -webkit-box-shadow: 6px 6px 6px 0px rgba(91, 92, 101, 0.3);
+    -moz-box-shadow: 6px 6px 6px 0px rgba(91,92,101,0.3);
+    box-shadow: 6px 6px 6px 0px rgba(91,92,101,0.3);
+
 }
 
 
@@ -297,10 +324,10 @@ input {
     align-items: center;
     height: 80%;
     width: 16%;
-    background-color: rgb(2, 161, 55);
+    background-color: transparent;
     /* background-color: rgba(237, 241, 244, 0.50); */
-    border-left: 1px solid rgb(71, 72, 75); 
-    border-right: 1px solid rgb(71, 72, 75); 
+    border-left: 1px solid rgb(166, 169, 171);
+    border-right: 1px solid rgb(166, 169, 171);
 }
 
 .forecast-block-day-date,
@@ -311,9 +338,14 @@ input {
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
-    /* color: rgb(71, 72, 75);   */
-    color: #fff;
+    color: rgb(71, 72, 75);  
+    /* color: hsl(0, 0%, 100%);  */
     font-weight: 600;
+}
+
+.forecast-block-day-icon {
+    width: 40px;
+    height: 40px;
 }
 
 

@@ -322,10 +322,10 @@ function getWeatherAPIdata()
             let mainWeatherTitleIcon = document.createElement("img");
             mainWeatherTitleIcon.setAttribute("class", "main-weather-title-icon")
             mainWeatherTitle.appendChild(mainWeatherTitleIcon);
-                    //Main Icon
-        var imgSrc = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
-        mainWeatherTitleIcon.setAttribute("src", imgSrc);
-        mainWeatherTitleIcon.setAttribute("alt", data.weather[0].icon)
+            //Main Icon
+            var imgSrc = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
+            mainWeatherTitleIcon.setAttribute("src", imgSrc);
+            mainWeatherTitleIcon.setAttribute("alt", data.weather[0].icon)
 
 
             //Creating the div for main weather temperature
@@ -342,11 +342,6 @@ function getWeatherAPIdata()
             let mainWeatherWind = document.createElement("p");
             mainWeatherWind.setAttribute("class", "main-weather-data")
             mainWeather.appendChild(mainWeatherWind);
-
-            //Creating the div for main weather UV Factor
-            let mainWeatherUV = document.createElement("p");
-            mainWeatherUV.setAttribute("class", "main-weather-data")
-            mainWeather.appendChild(mainWeatherUV);
 
             //Fill in the <divs> with fetched API info
             mainWeatherTitleText.textContent = data.name;
@@ -375,7 +370,27 @@ function getWeatherAPIdata()
                     console.log("main W title DATE string is  " + str);
                     // mainWeatherTitleDate = document.createElement("p");
                     mainWeatherTitleDate.textContent = str;
+                    // //Creating the box for UV index tht will change color
+                    mainWeatherUVbox = document.createElement("div");
+                    mainWeatherUVbox.setAttribute("class", "main-weather-UV-box");
+                    mainWeather.appendChild(mainWeatherUVbox);
+                    //Creating the div for main weather UV Factor
+                    let mainWeatherUV = document.createElement("p");
+                    mainWeatherUV.setAttribute("class", "main-weather-data")
+                    mainWeatherUVbox.appendChild(mainWeatherUV);
+                    //Filling in 
                     mainWeatherUV.textContent = "UV factor index: " + data2.value;
+                    var mainUV = data2.value;
+                    if (mainUV <2){
+                        mainWeatherUVbox.setAttribute("class", "UVclass-green")
+                    } else if (mainUV <5){
+                        mainWeatherUVbox.setAttribute("class", "UVclass-yellow")
+                    } else if (mainUV <7){
+                        mainWeatherUVbox.setAttribute("class", "UVclass-orange")
+                    }
+                    else {
+                        mainWeatherUVbox.setAttribute("class", "UVclass-red")
+                    }
                 })
         })//end of then from fetch(api)
 } //end of getWeatherAPIdata()
@@ -425,7 +440,7 @@ function getWeatherAPI5Days()
             forecastBlock.setAttribute("class", "forecast-block");
             RHSMainEl.appendChild(forecastBlock);
 
-            for (i = 8; i < arrayAPI.length; i += 8) {
+            for (i = 7; i < arrayAPI.length; i += 8) {
 
                 arrayAPI.push(arrayAPI[i]);
 
@@ -459,7 +474,7 @@ function getWeatherAPI5Days()
                 //Creating the div for the 5 days prognosis humidity
                 let forecastBlockDayHumidity = document.createElement("p");
                 forecastBlockDayHumidity.setAttribute("class", "forecast-block-day-hum");
-                forecastBlockDayHumidity.textContent = arrayAPI[i].main.humidity
+                forecastBlockDayHumidity.textContent = "Humidity: " + arrayAPI[i].main.humidity + "%";
                 forecastBlockDay.appendChild(forecastBlockDayHumidity);
 
                 console.log(arrayAPI[i])
