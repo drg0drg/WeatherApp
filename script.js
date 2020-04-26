@@ -130,7 +130,7 @@ function loadCitiesList()
 //api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
 function getWeatherAPIdata(city)
 {
-    var api = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&uvi&units=metric&appid=f729f6b644bc293d9f405e30b345dbd6";
+    var api = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&uvi&units=metric&appid=f729f6b644bc293d9f405e30b345dbd6";
     console.log("user input city is  " + city)
 
     fetch(api)
@@ -187,7 +187,7 @@ function getWeatherAPIdata(city)
             let cityLatitude = data.coord.lat;
             let cityLongitude = data.coord.lon;
             console.log(data);
-            var api2 = "http://api.openweathermap.org/data/2.5/uvi?appid=f729f6b644bc293d9f405e30b345dbd6&lat=" + cityLatitude + "&lon=" + cityLongitude;
+            var api2 = "https://api.openweathermap.org/data/2.5/uvi?appid=f729f6b644bc293d9f405e30b345dbd6&lat=" + cityLatitude + "&lon=" + cityLongitude;
 
             fetch(api2)
                 .then(res => res.json())
@@ -234,7 +234,7 @@ let arrayData
 
 function getWeatherAPI5Days(city)
 {
-    var api = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=f729f6b644bc293d9f405e30b345dbd6";
+    var api = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=f729f6b644bc293d9f405e30b345dbd6";
 
     fetch(api)
         .then(res => res.json())
