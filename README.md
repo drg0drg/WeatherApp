@@ -28,3 +28,7 @@ The Weather App uses OpenWeather API and allows you to quickly check the weather
 - CSS
 - JS
 
+
+https://drg0drg.github.io/WeatherApp/
+
+![WeatherApp_drg0drg](https://user-images.githubusercontent.com/60710786/80312502-53b34080-87dd-11ea-890d-73da2db75bb7.gif)
