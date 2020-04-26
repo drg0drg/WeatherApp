@@ -1,4 +1,6 @@
+//--------------------------------------------------------------
 //-----------------------WEATHER APP----------------------------
+//--------------------------------------------------------------
 inputEl = document.getElementById("input");
 searchBtn = document.getElementById("search-btn");
 citiesListEl = document.getElementById("cities-list");
@@ -28,7 +30,6 @@ nowDateShown.textContent = nowMoment.format("DD-MMM-YYYY");
 var nowHourShown = document.getElementById("navbar-hour");
 nowHourShown.textContent = nowMoment.format("kk:mm");
 //---------------------------------------------------------------------------------------------------------------
-
 window.onload = function ()
 {
     loadCitiesList();
@@ -47,6 +48,15 @@ searchBtn.addEventListener("click", function (e)
     RHSMainEl.innerHTML = '';
     inputEl.value = '';
 })//end of searchBtn.addEventListener
+//---------------------------------------------------------------------------------------------------------------
+input.addEventListener("keyup", function(event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      // Trigger the button element with a click
+      document.getElementById("search-btn").click();
+    }
+  });
 //---------------------------------------------------------------------------------------------------------------
 //function <createUserCityHistory> dynamically creates a div for each of user's searches
 function createUserCityHistory()
@@ -199,8 +209,8 @@ function getWeatherAPIdata(city)
                     let mainWeatherUV = document.createElement("p");
                     mainWeatherUV.setAttribute("class", "main-weather-data")
                     mainWeatherUVbox.appendChild(mainWeatherUV);
-                    //Filling in 
                     mainWeatherUV.textContent = "UV factor index: " + data2.value;
+                    //UV index indication coloring depending on value
                     var mainUV = data2.value;
                     if (mainUV <2){
                         mainWeatherUVbox.setAttribute("class", "UVclass-green")
@@ -268,7 +278,7 @@ function getWeatherAPI5Days(city)
                 //Creating the div for the 5 days forecast Humidity
                 let forecastBlockDayHumidity = document.createElement("p");
                 forecastBlockDayHumidity.setAttribute("class", "forecast-block-day-hum");
-                forecastBlockDayHumidity.textContent = arrayAPI[i].main.humidity
+                forecastBlockDayHumidity.textContent = "Humidity: " + arrayAPI[i].main.humidity + "%";
                 forecastBlockDay.appendChild(forecastBlockDayHumidity);
             }
             let slice = arrayAPI.splice(0, 5)
