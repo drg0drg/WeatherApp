@@ -249,7 +249,7 @@ function getWeatherAPI5Days(city)
             forecastBlock.setAttribute("class", "forecast-block");
             RHSMainEl.appendChild(forecastBlock);
 
-            for (i = 0; i < arrayAPI.length; i += 9) {
+            for (i = 1; i < arrayAPI.length; i += 9) {
                 arrayAPI.push(arrayAPI[i])
                 //Creating the div for the 5 days forecast boxes
                 let forecastBlockDay = document.createElement("div");
