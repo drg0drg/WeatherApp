@@ -74,6 +74,16 @@ function createUserCityHistory()
     for (localStorageKey = 0; localStorageKey < localStorageLength; localStorageKey++) {
         prevSearchText.innerHTML = localStorage.getItem(localStorageKey);
     }
+    prevSearch.addEventListener('click', function (e)
+    {
+        RHSMainEl.innerHTML = '';
+        e = e || window.event;
+        var target = e.target || e.srcElement;
+        prevCity = target.textContent || target.innerText;
+        getWeatherAPIdata(prevCity)
+        getWeatherAPI5Days(prevCity)
+    })//end of prevSearch.addEventListener
+
 }//end of createUserCityHistory()
 //-------------------------------------------------------------------------------------------------------
 //function to save user input to localStorage
